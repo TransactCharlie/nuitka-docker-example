@@ -10,8 +10,9 @@ install:
     - pip3 install -r app/requirements.txt
 
 script:
-    - nuitka --portable --show-progress --show-scons --graph --remove-output --improved --python-flag=no_site app/app.py
-    - ldd app.dist/app.exe
+    - nuitka --portable --show-progress --show-scons --remove-output --improved --python-flag=no_site app/app.py
+    - build_scripts/ldd_cp.sh app.dist/app.exe app.dist
+    - ls -lh app.dist
 
 #- docker build -t $REPO:$COMMIT .
 
