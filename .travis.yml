@@ -9,8 +9,9 @@ before_install:
 install:
     - pip3 install -r app/requirements.txt
 
-# nuitka --standalone --output-dir=    -
-
+script:
+    - nuitka --standalone app/app.py
+    
 #- docker build -t $REPO:$COMMIT .
 
 # after_success:
