@@ -11,10 +11,20 @@ install:
     - pip3 install -r app/requirements.txt
 
 script:
+    # Compile app
     - nuitka --portable --show-progress --show-scons --remove-output --improved --python-flag=no_site app/app.py
+
+    # Copy dependent linked libs
     - chmod +x build_scripts/ldd_cp.sh
     - build_scripts/ldd_cp.sh "app.dist/app.exe" "app.dist"
     - ls -lh app.dist
+
+    # Docker Build
+    - docker build -t ${REPO} .
+
+    # Run it
+    - docker run ${REPO}
+
 
 #- docker build -t $REPO:$COMMIT .
 
