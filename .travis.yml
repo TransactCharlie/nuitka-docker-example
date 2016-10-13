@@ -22,14 +22,17 @@ script:
     - ls -lhR app.dist
 
     # Docker Build
+    # ... travis makes this somewhat complicated....
+    # ... docker build app.dist -t blah does not work because app.dist is actually a symlink...
+    # ... so lets actually get in there! ...
     - cp Dockerfile app.dist
     - cd app.dist
-    - docker build . -t ${REPO}
+    - docker build -t ${REPO:$COMMIT} .
 
-    # Run it
-    - docker run ${REPO}
-
-
+    # Test it!
+    # Run container demonised and
+    - CONTAINER=`docker run -d -p 8001:8001 ${REPO:$COMMIT}`
+    - echo ${CONTAINER}
 #- docker build -t $REPO:$COMMIT .
 
 # after_success:
