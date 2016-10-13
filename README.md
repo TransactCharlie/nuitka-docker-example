@@ -17,8 +17,6 @@ You can see the status of all builds on [travis-ci](https://travis-ci.org/Transa
 
 ### It Works!
 
-[![It Works Build Status](https://travis-ci.org/TransactCharlie/nuitka-docker-example.svg?branch=master)](https://travis-ci.org/TransactCharlie/nuitka-docker-example)
-
 The vanilla build is a simple "hello world" type program. The app.py in its entirety is:
 
 ```python
@@ -49,9 +47,13 @@ It worked!
 
 Which is a lot of work to print a simple message to the console but...... it was fun!
 
+**IT WORKS BUILD STATUS**:
+[![It Works Build Status](https://travis-ci.org/TransactCharlie/nuitka-docker-example.svg?branch=master)](https://travis-ci.org/TransactCharlie/nuitka-docker-example)
+
 ### Flask App hosted by waitress
 
-[![It Works Build Status](https://travis-ci.org/TransactCharlie/nuitka-docker-example.svg?branch=waitress)](https://travis-ci.org/TransactCharlie/nuitka-docker-example)
+The build and code is in the [**waitress**](https://github.com/TransactCharlie/nuitka-docker-example/tree/waitress) branch
+
 
 This is a **much** more involved example that uses the popular python microframework [Flask](http://flask.pocoo.org/) being served by [Waitress](http://docs.pylonsproject.org/projects/waitress/en/latest/) - a pure python WSGI server.
 
@@ -107,3 +109,5 @@ Hello World!
 # docker logs e40
 2016-10-13T06:26:21 INFO:Hello World!
 ```
+
+**WAITRESS BUILD STATUS**: [![Waitress Build Status](https://travis-ci.org/TransactCharlie/nuitka-docker-example.svg?branch=waitress)](https://travis-ci.org/TransactCharlie/nuitka-docker-example)
