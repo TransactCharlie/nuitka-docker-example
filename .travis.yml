@@ -1,3 +1,5 @@
+language: python
+python: "3.5"
 sudo: required
 services:
     - docker
@@ -11,7 +13,7 @@ install:
 
 script:
     - nuitka --portable --show-progress --show-scons --remove-output --improved --python-flag=no_site app/app.py
-    - build_scripts/ldd_cp.sh app.dist/app.exe app.dist
+    - bash build_scripts/ldd_cp.sh app.dist/app.exe app.dist
     - ls -lh app.dist
 
 #- docker build -t $REPO:$COMMIT .

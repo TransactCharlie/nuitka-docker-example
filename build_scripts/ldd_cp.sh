@@ -15,5 +15,5 @@ COPY_TO=$2
 # Copy all the libs that are actually dynamically found
 ldd ${APP} grep "=> /" | awk '{print $3}' | xargs -I '{}' cp -v '{}' ${COPY_TO}
 
-# Copy lib64/ld--something--something to app.dist/lib64
+# Copy the fixed ld.so linker lib to app.dist/<fixed>/<linker_lib>.sp
 ldd ${APP} grep -v "->" | awk '{print $1}' | xargs -I '{}' cp --parents -v '{}' ${COPY_TO}
