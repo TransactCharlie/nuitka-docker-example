@@ -13,7 +13,7 @@ install:
 script:
     - nuitka --portable --show-progress --show-scons --remove-output --improved --python-flag=no_site app/app.py
     - chmod +x build_scripts/ldd_cp.sh
-    - build_scripts/ldd_cp.sh app.dist/app.exe app.dist
+    - build_scripts/ldd_cp.sh "app.dist/app.exe" "app.dist"
     - ls -lh app.dist
 
 #- docker build -t $REPO:$COMMIT .
