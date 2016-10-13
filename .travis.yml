@@ -36,6 +36,7 @@ script:
     - echo $CONTAINER
 
     # Try and curl it
+    - sleep 30
     - curl http://localhost:8001/
 
 after_success:
