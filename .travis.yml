@@ -35,6 +35,9 @@ script:
     - CONTAINER=`docker run -d -p 8001:8001 $REPO:$COMMIT`
     - echo $CONTAINER
 
+    # Try and curl it
+    - curl http://localhost:8001/
+
 after_success:
     - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
     - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
