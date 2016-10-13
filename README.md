@@ -98,7 +98,7 @@ Status: Downloaded newer image for transactcharlie/nuitka-docker-example:waitres
 e40078973f50285606a9b17fa86519489daeac77542c5607d55f27a39ce1ad22
 ```
 
-And now you **should** be able to access the http endpoint `http://localhost/` and see a nice `Hello World!` message
+And now you **should** be able to access the http endpoint `http://localhost:8001/` and see a nice `Hello World!` message
 
 ```
 # curl http://localhost:8001/
