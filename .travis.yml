@@ -28,7 +28,7 @@ script:
     # so lets actually get in there!
     - cp Dockerfile app.dist
     - cd app.dist
-    - docker build -t ${REPO:$COMMIT} .
+    - docker build -t ${REPO}:${COMMIT} .
 
     # Test it!
     # Run container demonised
