@@ -23,7 +23,7 @@ script:
 
     # Docker Build
     - cp Dockerfile app.dist
-    - docker build -t ${REPO} app.build
+    - docker build app.build -t ${REPO}
 
     # Run it
     - docker run ${REPO}
