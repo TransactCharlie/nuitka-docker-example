@@ -20,7 +20,7 @@ script:
     - ls -lh app.dist
 
     # Docker Build
-    - docker build -t ${REPO} .
+    - docker build -t ${REPO} app.build
 
     # Run it
     - docker run ${REPO}

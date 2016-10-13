@@ -1,3 +1,3 @@
 FROM scratch
-COPY app.dist/* /
+COPY / /
 ENTRYPOINT ["/app.exe"]
