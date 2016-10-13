@@ -1,3 +1,3 @@
 FROM scratch
-COPY / /
+COPY . /
 ENTRYPOINT ["/app.exe"]

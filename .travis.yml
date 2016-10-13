@@ -17,9 +17,12 @@ script:
     # Copy dependent linked libs
     - chmod +x build_scripts/ldd_cp.sh
     - build_scripts/ldd_cp.sh "app.dist/app.exe" "app.dist"
-    - ls -lh app.dist
+
+    # What did we end up with??
+    - ls -lhR app.dist
 
     # Docker Build
+    - cp Dockerfile app.dist
     - docker build -t ${REPO} app.build
 
     # Run it
