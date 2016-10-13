@@ -4,14 +4,14 @@ services:
 
 before_install:
     - sudo apt-get update -qq
-    - sudo apt-get install -qq python3-dev python python3-pip
+    - sudo apt-get install -qq python3-dev python python3-pip chrpath
 
 install:
     - pip3 install -r app/requirements.txt
 
 script:
-    - nuitka --standalone app/app.py
-    
+    - nuitka --standalone --show-progress --show-scons --show-memory --show-modules app/app.py
+
 #- docker build -t $REPO:$COMMIT .
 
 # after_success:
