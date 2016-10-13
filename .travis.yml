@@ -28,15 +28,12 @@ script:
     # so lets actually get in there!
     - cp Dockerfile app.dist
     - cd app.dist
-    - docker build -t ${REPO}:${COMMIT} .
+    - docker build -t $REPO:$COMMIT .
 
     # Test it!
-    # Run container demonised
-    - CONTAINER=`docker run -d -p 8001:8001 ${REPO:$COMMIT}`
-    - echo ${CONTAINER}
-
-    # we should be able to curl it
-    # - curl localhost:8001
+    # Run container
+    - CONTAINER=`docker run -d -p 8001:8001 $REPO:$COMMIT`
+    - echo $CONTAINER
 
 after_success:
     - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
@@ -44,7 +41,7 @@ after_success:
     - docker tag $REPO:$COMMIT $REPO:$TAG
     - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
     - docker push $REPO
-    # - curl -X POST https://hooks.microbadger.com/images/skyscanner/scollector/JrlH6udCH0uKSpdNrYjfuNlmH3Y=
+    - curl -X POST https://hooks.microbadger.com/images/transactcharlie/nuitka-docker-example/YY_gyMFSYOxt85AvTrde9_W8vu8=
 
 env:
   global:
