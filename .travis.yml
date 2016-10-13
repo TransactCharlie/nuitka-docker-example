@@ -1,0 +1,27 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - sudo apt-get update -qq
+    - sudo apt-get install -qq python3-dev python2 python3-pip
+
+install:
+    - pip3 install -r app/requirements.txt
+
+# nuitka --standalone --output-dir=    -
+
+#- docker build -t $REPO:$COMMIT .
+
+# after_success:
+# - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
+# - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+# - docker tag $REPO:$COMMIT $REPO:$TAG
+# - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+# - docker push $REPO
+# - curl -X POST https://hooks.microbadger.com/images/skyscanner/scollector/JrlH6udCH0uKSpdNrYjfuNlmH3Y=
+
+env:
+  global:
+  - COMMIT=${TRAVIS_COMMIT::8}
+  - REPO=transactcharlie/nuitka-docker-example
