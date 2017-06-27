@@ -1,14 +1,14 @@
-language: ruby 
+language: c++ 
 sudo: required
 services:
     - docker
 
 script:
     # Build our app and collect the libs -- exctract it from the container into the 
-    - build_and_extract.sh
+    - ./build_and_extract.sh
 
     # Stuff the compiled app into the base image
-    - package_into_base.sh $REPO:$COMMIT
+    - ./package_into_base.sh $REPO:$COMMIT
       
     # Test it!
     # Run container
