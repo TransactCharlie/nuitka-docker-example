@@ -1,35 +1,15 @@
-language: c++
+language: ruby 
 sudo: required
 services:
     - docker
 
-before_install:
-    - sudo apt-get update -qq
-    - sudo apt-get install -qq python3-dev python python3-pip chrpath
-
-install:
-    - pip3 install -r app/requirements.txt
-
 script:
-    # Compile app
-    - nuitka --portable --show-progress --show-scons --remove-output --improved --python-flag=no_site app/app.py
+    # Build our app and collect the libs -- exctract it from the container into the 
+    - build_and_extract.sh
 
-    # Copy dependent linked libs
-    # See the ldd_cp.sh script for an explanation of what/what this does
-    - chmod +x build_scripts/ldd_cp.sh
-    - build_scripts/ldd_cp.sh "app.dist/app.exe" "app.dist"
-
-    # What did we end up with??
-    - ls -lhR app.dist
-
-    # Docker Build
-    # travis makes this somewhat complicated
-    # docker build app.dist -t blah does not work because app.dist is actually a symlink
-    # so lets actually get in there!
-    - cp Dockerfile app.dist
-    - cd app.dist
-    - docker build -t $REPO:$COMMIT .
-
+    # Stuff the compiled app into the base image
+    - package_into_base.sh $REPO:$COMMIT
+      
     # Test it!
     # Run container
     - CONTAINER=`docker run -d -p 8001:8001 $REPO:$COMMIT`
