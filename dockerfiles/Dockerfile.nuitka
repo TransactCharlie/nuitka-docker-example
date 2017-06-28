@@ -1,15 +1,8 @@
 FROM transactcharlie/docker-nuitka:latest
 
-MAINTAINER Charlie Gildawie <charles.gildawie@gmail.com>
-LABEL org.label-schema.name="Docker Nuitka Build Base" \
-      org.label-schema.vcs-url="https://github.com/TransactCharlie/docker-nuitka" \
-      org.label-schema.description="Docker Image premade with Python3, docker.io and nuitka compiler"
-
 COPY . /
 RUN pip3 install -r app/requirements.txt
 RUN nuitka --portable --show-progress --show-scons --python-flag=no_site app/app.py
-RUN mkdir pack
 RUN chmod +x build_scripts/ldd_cp.sh
-RUN build_scripts/ldd_cp.sh "app.dist/app.exe" "pack"
-RUN cp app.dist/app.exe pack/app
-RUN ls -lhR pack
+RUN build_scripts/ldd_cp.sh "app.dist/app.exe" "app.dist"
+RUN ls -lhR app.dist 
