@@ -15,4 +15,8 @@ def hello():
 
 
 if __name__ == "__main__":
+<<<<<<< HEAD:app/app.py
     serve(app, host="0.0.0.0", port="8001")
+=======
+    print("Hello World")
+>>>>>>> master:examples/hello_world/app.py
