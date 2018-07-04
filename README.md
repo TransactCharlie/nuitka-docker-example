@@ -34,3 +34,39 @@ It worked!
 ```
 
 Which is a lot of work to print a simple message to the console but...... it was fun!
+
+## Waitress
+`examples/waitress` contains a much more involved example using Flask and Waitress to run a web server
+The app.py is still quite simple however
+
+```python
+from flask import Flask
+from waitress import serve
+import logging
+
+FORMAT = '%(asctime)-15s %(levelname)s:%(message)s'
+logging.basicConfig(format=FORMAT, datefmt='%Y-%m-%dT%I:%M:%S', level=logging.INFO)
+log = logging.getLogger(__name__)
+app = Flask(__name__)
+
+
+@app.route("/")
+def hello():
+    log.info("Hello World!")
+    return "Hello World!"
+
+
+if __name__ == "__main__":
+    serve(app, host="0.0.0.0", port="8001")
+
+```
+
+You can run this with:
+
+```bash
+docker run transactcharlie/nuitka-example:waitress
+```
+
+You should see output such as:
+```
+```
