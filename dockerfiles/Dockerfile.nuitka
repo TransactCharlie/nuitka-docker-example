@@ -7,7 +7,7 @@ LABEL org.label-schema.name="Docker Nuitka Build Base" \
 
 COPY . /
 RUN pip3 install -r app/requirements.txt
-RUN nuitka --portable --show-progress --show-scons --python-flag=no_site app/app.py
+RUN nuitka3 --portable --show-progress --show-scons --python-flag=no_site app/app.py
 RUN chmod +x build_scripts/ldd_cp.sh
 RUN build_scripts/ldd_cp.sh "app.dist/app.exe" "app.dist"
-RUN ls -lhR app.dist 
+RUN ls -lhR app.dist
