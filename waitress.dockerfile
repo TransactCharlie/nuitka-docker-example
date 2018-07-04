@@ -2,8 +2,6 @@ FROM transactcharlie/docker-nuitka:latest as builder
 
 MAINTAINER Charlie Gildawie <charles.gildawie@gmail.com>
 LABEL org.label-schema.name="Waitress Example" \
-      org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/TransactCharlie/nuitka-docker-example" \
       org.label-schema.description="Full example App compiled with nuitka in a scratch docker container"
 COPY examples/waitress /app
@@ -14,8 +12,6 @@ RUN ls -lhR app.dist
 
 FROM scratch
 LABEL org.label-schema.name="Waitress Example" \
-      org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/TransactCharlie/nuitka-docker-example" \
       org.label-schema.description="Full example App compiled with nuitka in a scratch docker container"
 COPY --from=builder /app.dist/ /
