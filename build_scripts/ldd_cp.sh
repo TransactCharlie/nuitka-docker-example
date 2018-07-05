@@ -17,3 +17,6 @@ ldd ${APP} | grep "=> /" | awk '{print $3}' | xargs -I '{}' cp --no-clobber -v '
 
 # Copy the fixed ld.so linker lib to app.dist/<fixed>/<linker_lib>.sp
 ldd ${APP} | grep "/lib64/ld-linux-x86-64" | awk '{print $1}' | xargs -I '{}' cp --parents -v '{}' ${COPY_TO}
+
+# libgcc fixes a bunch of problems on closedown of apps
+cp --no-clobber -v /lib/x86_64-linux-gnu/libgcc_s.so.1 ${COPY_TO}
