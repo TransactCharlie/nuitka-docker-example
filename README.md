@@ -42,6 +42,7 @@ The app.py is still quite simple however
 ```python
 from flask import Flask
 from waitress import serve
+
 import logging
 
 FORMAT = '%(asctime)-15s %(levelname)s:%(message)s'
@@ -64,9 +65,55 @@ if __name__ == "__main__":
 You can run this with:
 
 ```bash
-docker run transactcharlie/nuitka-example:waitress
+docker run -p 8001:8001 -it transactcharlie/nuitka-example:waitress
 ```
 
 You should see output such as:
 ```
+Serving on http://0.0.0.0:8001
+```
+
+and you can curl it: `curl localhost:8001`
+
+Response:
+```
+Hello World!%
+```
+
+## Sanic
+
+Sanic is a high performance event loop webserver using uvloop. It uses python3 extensively.
+
+`examples/sanic.py`
+
+```python
+from sanic import Sanic
+from sanic.response import json
+
+app = Sanic()
+
+
+@app.route("/")
+async def hello(request):
+    return json({"hello": "world"})
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8001)
+```
+
+Run it similar to waitress:
+```
+docker run -p 8001:8001 -it transactcharlie/nuitka-example:sanic
+```
+
+Output:
+```
+[2018-09-11 16:16:20 +0000] [1] [INFO] Goin' Fast @ http://0.0.0.0:8000
+[2018-09-11 16:16:20 +0000] [1] [INFO] Starting worker [1]
+```
+
+Curl: `curl localhost:8001`
+```
+{"hello":"world"}
 ```
