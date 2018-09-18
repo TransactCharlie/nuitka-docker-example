@@ -1,6 +1,6 @@
 FROM transactcharlie/docker-nuitka:latest AS builder
 MAINTAINER Charlie Gildawie <charles.gildawie@gmail.com>
-LABEL org.label-schema.name="Waitress Example" \
+LABEL org.label-schema.name="Sanic Example" \
       org.label-schema.vcs-url="https://github.com/TransactCharlie/nuitka-docker-example" \
       org.label-schema.description="Full example App compiled with nuitka in a scratch docker container"
 COPY examples/sanic /app
